@@ -1,0 +1,19 @@
+{
+	"name": "@archival/geppetto",
+	"version": "0.1.0",
+	"private": true,
+	"license": "AGPL-3.0-or-later",
+	"type": "module",
+	"bin": "./main.ts",
+	"scripts": {
+		"typecheck": "tsc",
+		"build": "bun build ./main.ts --target=node --outfile=./dist/geppetto.js --packages=bundle --minify --sourcemap=inline"
+	},
+	"dependencies": {
+		"puppeteer": "^24.4.0"
+	},
+	"peerDependencies": {
+		"@types/node": "^22.13.10",
+		"typescript": "^5.0.0"
+	}
+}

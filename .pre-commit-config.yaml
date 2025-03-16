@@ -1,0 +1,49 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: check-case-conflict
+  - id: check-executables-have-shebangs
+  - id: check-merge-conflict
+  - id: check-shebang-scripts-are-executable
+  - id: check-symlinks
+  - id: check-vcs-permalinks
+  - id: check-yaml
+  - id: destroyed-symlinks
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: forbid-submodules
+  - id: mixed-line-ending
+    args: [--fix=lf]
+  - id: no-commit-to-branch
+    args: [--branch=main]
+  - id: trailing-whitespace
+- repo: https://github.com/Lucas-C/pre-commit-hooks
+  rev: v1.5.5
+  hooks:
+  - id: insert-license
+    files: \.(ts)$
+    args:
+    - --license-filepath
+    - HEADER.txt
+    - --comment-style
+    - /**| *| */
+    - --use-current-year
+    - --no-extra-eol
+- repo: https://github.com/crate-ci/typos
+  rev: v1.30.2
+  hooks:
+  - id: typos
+- repo: local
+  hooks:
+  - id: biome-check
+    name: biome check
+    entry: bunx @biomejs/biome check --write --unsafe
+    language: system
+    types: [text]
+    files: \.(js|jsx|ts|tsx|json|jsonc)$
+  - id: nixfmt
+    name: nixfmt
+    entry: nixfmt --strict --verify --width=120
+    language: system
+    types: [nix]
